@@ -29,7 +29,23 @@
 *Приведите ответ в свободной форме.*
 ```
 ```
+**DRaaS**
 
+Disaster Recovery as a Service. Обеспечивает резервирование самой инфраструктуры (всей или критичеки важных фрагментов). Репликация данных только в одном экземпляре
+
+**BaaS**
+
+Backup as a Service. Выполняется резервное копирование только данных. Имеются разные точки восстановления.
+
+**Active-Active**
+
+Или "горячая" резервная площадка. Резервование базовой инфраструктуры и поддержка наличия актуальной копии данных.
+Как правило решается на базе IaaS.
+
+**Active-Passive**
+
+Или "холодная" резервная площадка. Резерование  базовой инфраструктуры. Наличие актуальных данных нет.
+Строится базовая инфраструктура на другом, редко используемом, объекте.
 
 ---
 
@@ -63,6 +79,25 @@
 *Пришлите файл конфигурации.*
 
 ```
+sudo apt install rsync
+sudo nano /etc/rsyncd.conf
+sudo systemctl start rsync.service
+sudo systemctl status rsync.service
+
+```
+
+```
+pid file = /var/run/rsyncd.pid
+lock file = /var/run/rsync.lock
+log file = /var/log/rsync.log
+[share]
+path = /tmp/share/
+hosts allow = 192.168.56.11
+hosts deny = *
+list = true
+uid = nobody
+gid = nogroup
+read only = false
 ```
 
 [**Файл .conf**](https://github.com/StanislavBaranovskii/10-6-hw/blob/main/data/.conf)
